@@ -38,6 +38,7 @@ Pass your config table into the `setup()` function or `opts` if you use lazy.nvi
 ### Options
 
 #### Default options
+
 ```lua
 opts = {
     -- File extension to runner/interpreter mapping
@@ -75,6 +76,7 @@ opts = {
 - `keymaps`: table of keybindings and their descriptions
 
 #### Example config
+
 ```lua
 opts = {
     runners = {
@@ -108,7 +110,9 @@ opts = {
   - necessarily, the terminal is interactive by default in this mode.
 
 ### Shebang example with node
+
 `test.js`
+
 ```js
 #!/usr/bin/env node
 
@@ -153,4 +157,5 @@ opts = {
 - better support for runner flags
 
 ## Credits
+
 - plugin inspired by keymap script by u/linkarzu on r/neovim
