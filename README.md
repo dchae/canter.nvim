@@ -4,6 +4,25 @@
 
 lightweight neovim code runner plugin that works with Snacks.nvim terminal
 
+## Table of Contents
+- [canter.nvim](#canternvim)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [With lazy.nvim](#with-lazynvim)
+    - [Other package managers](#other-package-managers)
+  - [Configuration](#configuration)
+    - [Options](#options)
+      - [Default options](#default-options)
+      - [Example config](#example-config)
+  - [Usage](#usage)
+    - [Terminal Usage](#terminal-usage)
+    - [Shebang example with node](#shebang-example-with-node)
+    - [Default Keybinds](#default-keybinds)
+  - [Roadmap](#roadmap)
+  - [Credits](#credits)
+
 ## Requirements
 
 - Neovim (>= 0.7)
@@ -44,13 +63,24 @@ opts = {
     -- File extension to runner/interpreter mapping
     runners = {},
 
-    -- Terminal configuration (passed to Snacks.nvim)
-    Snacks_terminal_opts = {
-        win = {
-            position = "bottom",
-            relative = "editor"
+    -- Terminal configuration
+    terminal = {
+        type = "snacks",  -- "snacks" or "builtin"
+        
+        -- Options for built-in terminal
+        builtin_opts = {
+            position = "vsplit",  -- "vsplit", "split", or "float"
+            escape_keymap = true, -- escape terminal mode with <Esc>
         },
-        interactive = false
+        
+        -- Options for Snacks.nvim terminal
+        snacks_opts = {
+            win = {
+                position = "bottom",
+                relative = "editor"
+            },
+            interactive = false
+        }
     },
 
     -- Default keymaps (can be overridden)
@@ -70,9 +100,10 @@ opts = {
 **NOTE** - does not come with runners by default, you must add your own.
 
 - `runners`: table `([file_extension] = runner/interpreter)`
-- `Snacks_terminal_opts`: table of options passed to Snacks.nvim terminal
-  - `win`: window positioning options
-  - `interactive`: whether terminal starts in interactive mode
+- `terminal`: table of options passed to terminal
+  - `type`: type of terminal
+  - `builtin_opts`: options for built-in terminal
+  - `snacks_opts`: options for Snacks.nvim terminal
 - `keymaps`: table of keybindings and their descriptions
 
 #### Example config
@@ -84,12 +115,11 @@ opts = {
         ["rb"] = "ruby", 
         ["py"] = "python"
     },
-    Snacks_terminal_opts = {
-        win = {
-            position = "right",  -- Change terminal position to right
-            relative = "editor"
-        },
-        interactive = true      -- Always start in interactive mode
+    terminal = {
+        type = "builtin",
+        builtin_opts = {
+            position = "vsplit",
+        }
     }
 }
 ```
@@ -108,6 +138,12 @@ opts = {
 
 - same as above, but stops before actually executing so you can add flags or confirm the command before pressing enter.
   - necessarily, the terminal is interactive by default in this mode.
+
+### Terminal Usage
+
+When using the built-in terminal in wait mode:
+- Press `<Esc>` to exit terminal mode and return to normal mode (if `escape_keymap` is enabled)
+- Alternatively, use the default Neovim terminal escape sequence: `<C-\><C-n>`
 
 ### Shebang example with node
 
@@ -158,4 +194,4 @@ opts = {
 
 ## Credits
 
-- plugin inspired by keymap script by u/linkarzu on r/neovim
+- plugin inspired by keymap script by u/linkarzu on [r/neovim](https://www.reddit.com/r/neovim/comments/1ai19ux/execute_current_file_script_using_a_keymap_i_use/)
