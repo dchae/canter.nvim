@@ -5,10 +5,12 @@
 lightweight neovim code runner plugin that works with Snacks.nvim terminal
 
 ## Table of Contents
+
 - [canter.nvim](#canternvim)
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
+    - [Optional (but recommended)](#optional-but-recommended)
   - [Installation](#installation)
     - [With lazy.nvim](#with-lazynvim)
     - [Other package managers](#other-package-managers)
@@ -26,10 +28,13 @@ lightweight neovim code runner plugin that works with Snacks.nvim terminal
 ## Requirements
 
 - Neovim (>= 0.7)
+
+### Optional (but recommended)
 - [Snacks.nvim](https://github.com/folke/snacks.nvim) (>= 2.11.0)
-  - needed for Terminal
+  - better Terminal
 - [which-key](https://github.com/folke/which-key.nvim) (>= 3.15.0)
-  - only needed for custom leader key menu group name
+  - custom leader key menu group name
+- These both come default with lazy.nvim
 
 ## Installation
 
@@ -60,40 +65,40 @@ Pass your config table into the `setup()` function or `opts` if you use lazy.nvi
 
 ```lua
 opts = {
-    -- File extension to runner/interpreter mapping
-    runners = {},
+  -- File extension to runner/interpreter mapping
+  runners = {},
 
-    -- Terminal configuration
-    terminal = {
-        type = "snacks",  -- "snacks" or "builtin"
-        
-        -- Options for built-in terminal
-        builtin_opts = {
-            position = "vsplit",  -- "vsplit", "split", or "float"
-            escape_keymap = true, -- escape terminal mode with <Esc>
-        },
-        
-        -- Options for Snacks.nvim terminal
-        snacks_opts = {
-            win = {
-                position = "bottom",
-                relative = "editor"
-            },
-            interactive = false
-        }
+  -- Terminal configuration
+  terminal = {
+    type = "snacks", -- "snacks" or "builtin"
+
+    -- Options for built-in terminal
+    builtin_opts = {
+      position = "vsplit", -- "vsplit", "split", or "float"
+      escape_keymap = true, -- escape terminal mode with <Esc>
     },
 
-    -- Default keymaps (can be overridden)
-    keymaps = {
-        ["<leader><cr><cr>"] = {
-            cmd = ":CanterRun<CR>",
-            desc = "Run current file (Auto)"
-        },
-        ["<leader><cr>w"] = {
-            cmd = ":CanterWait<CR>",
-            desc = "Run current file (Wait)"
-        }
-    }
+    -- Options for Snacks.nvim terminal
+    snacks_opts = {
+      win = {
+        position = "bottom",
+        relative = "editor",
+      },
+      interactive = false,
+    },
+  },
+
+  -- Default keymaps (can be overridden)
+  keymaps = {
+    ["<leader><cr><cr>"] = {
+      cmd = ":CanterRun<CR>",
+      desc = "Run current file (Auto)",
+    },
+    ["<leader><cr>w"] = {
+      cmd = ":CanterWait<CR>",
+      desc = "Run current file (Wait)",
+    },
+  },
 }
 ```
 
@@ -110,17 +115,11 @@ opts = {
 
 ```lua
 opts = {
-    runners = {
-        ["js"] = "node", 
-        ["rb"] = "ruby", 
-        ["py"] = "python"
-    },
-    terminal = {
-        type = "builtin",
-        builtin_opts = {
-            position = "vsplit",
-        }
-    }
+  runners = {
+    ["js"] = "node",
+    ["rb"] = "ruby",
+    ["py"] = "python"
+  },
 }
 ```
 
@@ -142,6 +141,7 @@ opts = {
 ### Terminal Usage
 
 When using the built-in terminal in wait mode:
+
 - Press `<Esc>` to exit terminal mode and return to normal mode (if `escape_keymap` is enabled)
 - Alternatively, use the default Neovim terminal escape sequence: `<C-\><C-n>`
 
