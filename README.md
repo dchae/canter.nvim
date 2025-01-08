@@ -193,10 +193,15 @@ opts = {
 
 ## Roadmap
 
-- should work with vsplit terminal when Snacks is not available
-- automatically scan and resolve runners for a given file extension
-- better support for runner flags
+- [x] should work with native terminal when Snacks is not available
+- [ ] refactor terminal code to a separate module
+- [ ] automatically scan and resolve runners for a given file extension
+  - [ ] prompt to set or confirm runner when new filetype is encountered
+- [ ] native support for runner flags
+- [ ] better compiled language support
+  - should be able to compile, show build result, and run with one command
+- [ ] native command to toggle or undo chmod make executable
 
 ## Credits
 
-- plugin inspired by keymap script by u/linkarzu on [r/neovim](https://www.reddit.com/r/neovim/comments/1ai19ux/execute_current_file_script_using_a_keymap_i_use/)
+- this plugin grew out of the custom keymap script I was using, which was in turn inspired by u/linkarzu script on [r/neovim](https://www.reddit.com/r/neovim/comments/1ai19ux/execute_current_file_script_using_a_keymap_i_use/)
