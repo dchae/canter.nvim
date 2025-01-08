@@ -77,7 +77,10 @@ local function run_current_file(runImmediately, opts)
    end
 
    if shebang then
-      vim.cmd("!chmod +x " .. filepath) -- Make the file executable
+      local absolute_path = vim.fn.fnamemodify(filepath, ":p")
+      if vim.fn.executable(absolute_path) ~= 1 then
+         vim.cmd("!chmod +x " .. vim.fn.shellescape(filepath)) -- Make the file executable if needed
+      end
    end
 
    execute_command(cmd, wait, opts)
