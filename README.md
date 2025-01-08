@@ -4,10 +4,14 @@
 
 lightweight neovim code runner plugin that works with Snacks.nvim terminal
 
+### Demo
+![demo](https://github.com/dchae/canter.nvim/blob/main/assets/canter_demo.gif?raw=true)
+
 ## Table of Contents
 
 - [canter.nvim](#canternvim)
   - [Introduction](#introduction)
+    - [Demo](#demo)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
     - [Optional (but recommended)](#optional-but-recommended)
