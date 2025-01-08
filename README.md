@@ -69,6 +69,7 @@ Pass your config table into the `setup()` function or `opts` if you use lazy.nvi
 
 ```lua
 opts = {
+  debug = false,
   -- File extension to runner/interpreter mapping
   runners = {},
 
