@@ -5,6 +5,7 @@
 lightweight neovim code runner plugin that works with Snacks.nvim terminal
 
 ### Demo
+
 ![demo](https://github.com/dchae/canter.nvim/blob/main/assets/canter_demo.gif?raw=true)
 
 ## Table of Contents
@@ -34,6 +35,7 @@ lightweight neovim code runner plugin that works with Snacks.nvim terminal
 - Neovim (>= 0.7)
 
 ### Optional (but recommended)
+
 - [Snacks.nvim](https://github.com/folke/snacks.nvim) (>= 2.11.0)
   - better Terminal
 - [which-key](https://github.com/folke/which-key.nvim) (>= 3.15.0)
@@ -194,6 +196,7 @@ opts = {
 ## Roadmap
 
 - [x] should work with native terminal when Snacks is not available
+- [ ] option to autosave before running
 - [ ] refactor terminal code to a separate module
 - [ ] automatically scan and resolve runners for a given file extension
   - [ ] prompt to set or confirm runner when new filetype is encountered
