@@ -123,7 +123,7 @@ local default_opts = { -- default options
    terminal = {
       type = "snacks", -- can be "snacks" or "builtin"
       builtin_opts = {
-         position = "vsplit", -- can be "vsplit", "split", or "float"
+         position = "split", -- can be "vsplit", "split", or "float"
          escape_keymap = true, -- escape terminal mode with <Esc>
       },
       snacks_opts = {
@@ -138,6 +138,10 @@ local default_opts = { -- default options
       ["<leader><cr><cr>"] = {
          cmd = ":CanterRun<CR>",
          desc = "Run current file (Auto)",
+      },
+      ["<leader><cr>r"] = {
+         cmd = ":CanterPositionRight<CR>",
+         desc = "Temporarily dock Terminal right",
       },
       ["<leader><cr>w"] = {
          cmd = ":CanterWait<CR>",
@@ -161,8 +165,14 @@ function M.setup(user_opts)
    local function run_current_file_auto()
       run_current_file(false, opts)
    end
+
    local function run_current_file_wait()
       run_current_file(true, opts)
+   end
+
+   local function change_pos_right()
+      opts.terminal.builtin_opts.position = "vsplit"
+      opts.terminal.snacks_opts.win.position = "right"
    end
 
    -- Add keymaps if configured
@@ -189,6 +199,7 @@ function M.setup(user_opts)
    local commands = {
       CanterRun = run_current_file_auto,
       CanterWait = run_current_file_wait,
+      CanterPositionRight = change_pos_right,
    }
 
    for cmd, fn in pairs(commands) do
