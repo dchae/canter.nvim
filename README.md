@@ -120,12 +120,17 @@ opts = {
 
 #### Example config
 
+The current filename will be interpolated into the runner command.
+For example, `node %s` will become `node 'myFile.js'`.
+
 ```lua
 opts = {
   runners = {
-    ["js"] = "node",
-    ["rb"] = "ruby",
-    ["py"] = "python"
+    ["js"] = "node %s",
+    ["ts"] = "bun %s",
+    ["rb"] = "ruby %s",
+    ["py"] = "python %s",
+    ["cpp"] = "make brun",
   },
 }
 ```
@@ -200,8 +205,8 @@ opts = {
 - [ ] refactor terminal code to a separate module
 - [ ] automatically scan and resolve runners for a given file extension
   - [ ] prompt to set or confirm runner when new filetype is encountered
-- [ ] native support for runner flags
-- [ ] better compiled language support
+- [x] native support for runner flags
+- [x] better compiled language support
   - should be able to compile, show build result, and run with one command
 - [ ] native command to toggle or undo chmod make executable
 

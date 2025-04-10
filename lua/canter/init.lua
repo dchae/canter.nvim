@@ -43,7 +43,8 @@ local function build_command(filepath, shebang, opts)
          cmd = "./" .. safe_filepath
       end
    elseif runner then -- if we have a valid runner for the filetype
-      cmd = runner .. " " .. safe_filepath -- Runner and filepath (e.g. "node script.js")
+      -- cmd = runner .. " " .. safe_filepath -- Runner and filepath (e.g. "node script.js")
+      cmd = string.format(runner, safe_filepath)
    end
 
    return cmd
