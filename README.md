@@ -111,7 +111,7 @@ opts = {
 
 **NOTE** - does not come with runners by default, you must add your own.
 
-- `runners`: table `([file_extension] = runner/interpreter)`
+- `runners`: table `([file_extension] = run command)`
 - `terminal`: table of options passed to terminal
   - `type`: type of terminal
   - `builtin_opts`: options for built-in terminal
@@ -130,7 +130,7 @@ opts = {
     ["ts"] = "bun %s",
     ["rb"] = "ruby %s",
     ["py"] = "python %s",
-    ["cpp"] = "make brun",
+    ["cpp"] = "make run",
   },
 }
 ```
@@ -143,7 +143,7 @@ opts = {
   1. make the file executable via `chmod`
   2. execute the current file
 - else, if the file has a corresponding runner
-  1. execute the current file via its runner in `Snacks.terminal`
+  1. execute the current file via its runner command in `Snacks.terminal`
 
 "Run current file (Wait)"
 
